@@ -57,3 +57,25 @@ class SphereToCircle(Scene):
         self.play(FadeOut(sphere))
 
 
+#create square and circle
+class SquareAndCircle(Scene):
+    def construct(self):
+        circle = Circle() 
+        circle.set_fill(PINK, opacity=0.5) 
+
+        square = Square() 
+        square.set_fill(BLUE, opacity=0.5)
+
+        square.next_to(circle, RIGHT, buff=0.5)  
+        self.play(Create(circle), Create(square)) 
+
+
+#rotate a square in different directions
+class DifferentRotations(Scene):
+    def construct(self):
+        left_square = Square(color=BLUE, fill_opacity=0.7).shift(2 * LEFT)
+        right_square = Square(color=GREEN, fill_opacity=0.7).shift(2 * RIGHT)
+        self.play(
+            left_square.animate.rotate(PI), Rotate(right_square, angle=PI), run_time=2
+        )
+        self.wait()
