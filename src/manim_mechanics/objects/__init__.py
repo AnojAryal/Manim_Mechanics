@@ -1,28 +1,32 @@
-from .objects import (
-    # Mechanics
+from .mechanics import (
     Mechanics,
     PointLoad,
     DistributedLoad,
     MomentLoad,
     Support,
-    # Shapes
+)
+from .shapes import (
     Square,
     RectangleShape,
     CircleShape,
     TriangleShape,
-    # Physical Objects
+)
+from .physical_object import (
     PhysicalObject,
     PhysicalBox,
     PhysicalCircle,
-    # Forces
+)
+from .forces import (
     Force,
     ForceVector,
     ForceSystem,
-    # Measurements
+)
+from .measurements import (
     DimensionLine,
     AngleArc,
     ValueLabel,
-    # Animations
+)
+from .animations import (
     MechanicalAnimation,
     ForceAnimation,
     SystemAnimation,

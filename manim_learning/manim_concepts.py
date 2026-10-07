@@ -86,3 +86,14 @@ class SuccessionDots(Scene):
             dot3.animate.move_to(dot4),
             dot4.animate.move_to(dot1)
         ))
+
+
+class CreateBeam(Scene):
+    def construct(self):
+        beam = Rectangle(
+            width=8,
+            height=0.5,
+        )
+
+        self.play(Create(beam))
+        self.wait()
