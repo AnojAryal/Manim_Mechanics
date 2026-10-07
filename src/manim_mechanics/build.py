@@ -1,5 +1,7 @@
 from manim import *
-from manim_mechanics import Mechanics, PointLoad, Support, PhysicalBox
+from manim_mechanics import Mechanics, PointLoad, Support, PhysicalBox, DistributedLoad, MomentLoad
+from manim_mechanics import DimensionLine
+
 
 class CreateBeam(Scene):
     def construct(self):
@@ -45,4 +47,43 @@ class MovingObjects(Scene):
         # Update mass label
         box.set_mass(10.0)
         self.play(box.animate.move_to([3, 0, 0]), run_time=2)
+        self.wait()
+
+
+
+class ComplexBeam(Scene):
+    def construct(self):
+        beam = Mechanics(
+            length=12,
+            height=0.5,
+            supports=[
+                Support(position=0, type="pinned"),
+                Support(position=8, type="roller"),
+                Support(position=12, type="free"),
+            ],
+            point_loads=[
+                PointLoad(position=3, magnitude=10, direction="down", label="10 kN"),
+                PointLoad(position=9, magnitude=15, direction="down", label="15 kN"),
+            ],
+            distributed_loads=[
+                DistributedLoad(
+                    start_position=4,
+                    end_position=7,
+                    magnitude=5,
+                    direction="down",
+                    label="5 kN/m",
+                ),
+            ],
+            moment_loads=[
+                MomentLoad(
+                    position=8,
+                    magnitude=20,
+                    direction="clockwise",
+                    label="20 kN·m",
+                ),
+            ],
+            show_dimensions=True,
+        )
+
+        self.play(Create(beam))
         self.wait()

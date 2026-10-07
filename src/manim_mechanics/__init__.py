@@ -1,6 +1,3 @@
-# Copyright (c) 2026 Manim Mechanics Contributors
-# MIT License - See LICENSE file for details
-
 from .objects import (
     # Mechanics
     Mechanics,
