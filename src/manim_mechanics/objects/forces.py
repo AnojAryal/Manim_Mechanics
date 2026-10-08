@@ -81,6 +81,19 @@ class ForceVector(VGroup):
         stroke_width: float = 4,
         **kwargs,
     ) -> None:
+        """Simple constructor: ForceVector(magnitude, direction, start_point, label, color)"""
+        # Convert color string to Manim color if needed
+        if isinstance(color, str) and color == "white":
+            color = WHITE
+        elif isinstance(color, str) and color == "red":
+            color = RED
+        elif isinstance(color, str) and color == "blue":
+            color = BLUE
+        elif isinstance(color, str) and color == "green":
+            color = GREEN
+        elif isinstance(color, str) and color == "yellow":
+            color = YELLOW
+
         self.magnitude = magnitude
         self.direction = direction
         self.start_point = start_point if start_point is not None else [0.0, 0.0, 0.0]

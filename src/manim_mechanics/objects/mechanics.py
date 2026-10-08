@@ -8,12 +8,22 @@ from manim import *
 
 @dataclass
 class PointLoad:
-    """A point load applied to a beam or structure."""
+    """A point load applied to a beam or structure.
+
+    Simple usage: PointLoad(position, magnitude, direction, label)
+    """
     position: float
     magnitude: float
     direction: Literal["up", "down", "left", "right"] = "down"
     label: str | None = None
     color: str = "white"
+
+    def __init__(self, position, magnitude, direction="down", label=None, color="white"):
+        self.position = position
+        self.magnitude = magnitude
+        self.direction = direction
+        self.label = label
+        self.color = color
 
 
 @dataclass
@@ -39,9 +49,16 @@ class MomentLoad:
 
 @dataclass
 class Support:
-    """A support constraint for a beam or structure."""
+    """A support constraint for a beam or structure.
+
+    Simple usage: Support(position, type)
+    """
     position: float
     type: Literal["pinned", "roller", "fixed", "free"]
+
+    def __init__(self, position, type):
+        self.position = position
+        self.type = type
 
 
 class Mechanics(VGroup):
@@ -81,7 +98,7 @@ class Mechanics(VGroup):
     def __init__(
         self,
         length: float,
-        height: float,
+        height: float = 0.5,
         *,
         supports: list[Support] | None = None,
         point_loads: list[PointLoad] | None = None,
